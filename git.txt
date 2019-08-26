@@ -1,0 +1,86 @@
+初始化 Git 仓库（这个仓库会存放Git对我们项目代码进行备份的文件）：	
+	在项目目录右键打开 git dash here
+	命令行：	git init
+
+配置个人信息：
+	用户名：git config --global user.name "nhy"
+	用户邮箱：git config --global user.email "nhy@sina.com"
+
+myproject是工作区，不包含.git
+
+把代码存储到 .git 仓库中：
+	1. 放到大门口(暂存区)： git add ./hello\ world.html
+多个修改过了的文件的话，输入 git add ./
+	2. 放到房间（版本库），并登记：   git commit -m "一些说明"
+
+查看当前状态：
+	git status		红色字体表示 当前只修改了代码，还没做其它事
+					绿色字体表示 文件放入了 暂存区
+					白色字体表示 文件放入了 版本库
+
+
+
+一次性放入到 版本库 中：
+	git commit --all -m "说明"
+
+
+查看日志：
+	git log
+精简版日志： 
+	git log --oneline
+查看每一次切换版本的记录：
+	git reflog
+
+回退到指定的版本：
+	git reset --hard Head~0		0：最近的一次版本
+								1：上一次的版本
+								以此类推
+通过版本号切换版本：
+	git reset --hard 68bf9f0
+
+创建分支，分时段提交版本：
+	创建分支： git branch dev
+	查看所有分支： git branch			带 * 表示当前所在分支
+	切换分支：	git checkout dev
+	把文件放入版本库
+	切换到 master 主分支
+	合并分支内容，当前分支与指定分支合并：	git merge dev
+
+合并时，如果发生冲突，需要手动处理(对文件进行处理)，再把文件放入版本库	
+
+删除分支： git branch -d dev		不能再 dev 分支中操作(不能自杀)
+
+
+设置被忽略的文件或者目录：
+	在 .gitignore 中可以书写被忽略的文件的路径，
+	以 / 开头，一行写一个路径，这些路径所对应的文件都会被忽略，不会被提交到仓库中
+	写法： /.idea 会忽略.idea文件		
+		  /js会忽略js目录里所有的文件	
+		  /js/*.js会忽略js目录下所有的js文件
+
+
+提交代码到 GitHub(当中 git 服务器来用)：
+	新建仓库： 登录 GitHub ，点击 用户头像 旁的 + 下的 New repository
+	把当前分支的内容上传到远程master分支上： git push https网址	 master
+
+拿别人的代码：
+	新的文件夹中，初始化git：			 git init
+	从master上提取代码：  	git pull https地址 master
+
+得到远程仓库数据，如果多次执行会覆盖本地的内容(pull不会)：		git clone https地址		
+
+快捷提交到远程仓库： 事先输入： git remote add origin(名字自定义) 远程地址
+			仅限当前仓库提交： git push origin master
+			仅限当前仓库更新： git pull origin master
+
+
+git push origin -u master	本地的master分支 与 远程master分支 进行关联
+下一次上传的话，直接写： git push 即可     
+更新也自动可以变成了：	git pull
+
+ssh上传代码：
+	生成秘钥：	ssh-keygen -t rsa -C "nhy@sina.com"
+	查看秘钥： 打开 C盘--用户--用户名--.ssh--id_rsa.pub是公钥，用sublime打开，复制代码，
+			   登录 GitHub 点击头像下的Settings下的 SSH and GPG keys 下的 New SSH key 在 key 中粘贴
+	验证是否成功：ssh -T 
+	提交代码： 	git push SSH地址 master
