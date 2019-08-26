@@ -61,7 +61,7 @@ myproject是工作区，不包含.git
 
 提交代码到 GitHub(当中 git 服务器来用)：
 	新建仓库： 登录 GitHub ，点击 用户头像 旁的 + 下的 New repository
-	把当前分支的内容上传到远程master分支上： git push https网址	 master
+	把当前分支的内容上传到远程master分支上： git push https/ssh地址网址	 master
 
 拿别人的代码：
 	新的文件夹中，初始化git：			 git init
@@ -78,9 +78,11 @@ git push origin -u master	本地的master分支 与 远程master分支 进行关
 下一次上传的话，直接写： git push 即可     
 更新也自动可以变成了：	git pull
 
+查看当前设备有哪些远程仓库： git remote
+每个别名的实际连接地址： git remote -v
+
 ssh上传代码：
 	生成秘钥：	ssh-keygen -t rsa -C "nhy@sina.com"
 	查看秘钥： 打开 C盘--用户--用户名--.ssh--id_rsa.pub是公钥，用sublime打开，复制代码，
 			   登录 GitHub 点击头像下的Settings下的 SSH and GPG keys 下的 New SSH key 在 key 中粘贴
-	验证是否成功：ssh -T 
-	提交代码： 	git push SSH地址 master
+	验证是否成功： ssh -T git@github.com
