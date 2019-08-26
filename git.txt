@@ -1,4 +1,4 @@
-初始化 Git 仓库（这个仓库会存放Git对我们项目代码进行备份的文件）：	
+﻿初始化 Git 仓库（这个仓库会存放Git对我们项目代码进行备份的文件）：	
 	在项目目录右键打开 git dash here
 	命令行：	git init
 
@@ -77,6 +77,9 @@ myproject是工作区，不包含.git
 git push origin -u master	本地的master分支 与 远程master分支 进行关联
 下一次上传的话，直接写： git push 即可     
 更新也自动可以变成了：	git pull
+
+添加仓库：git remote add origin2
+删除仓库： git remote rm origin2
 
 查看当前设备有哪些远程仓库： git remote
 每个别名的实际连接地址： git remote -v
